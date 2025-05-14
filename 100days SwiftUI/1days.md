@@ -59,3 +59,6 @@
 
 이 정리된 내용이 Swift 학습에 도움이 되시길 바랍니다!
 ```
+
+https://www.hackingwithswift.com/quick-start/understanding-swift/why-does-swift-have-variables -> Swift 에 변수가 있는 이유는 무엇인가?
+
