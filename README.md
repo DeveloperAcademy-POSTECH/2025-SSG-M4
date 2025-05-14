@@ -1,18 +1,17 @@
-# 🌱 Swift Universe - Team1
+# 🌱 Swift Universe - Team4
 
 Swift Study Group에 오신 것을 환영합니다! 🤗
 이 저장소는 Swift 언어를 탐구하고 깊이 있는 학습을 진행하기 위한 공간입니다. 
 Obsidian을 활용하여 학습한 내용을 Markdown 노트로 기록하고, GitHub를 통해 협업하여 서로의 학습을 공유하고 발전할 수 있도록 구성되었습니다.
 
 ### 🪐 지금 우리는 (매주 업데이트 예정)
-<img width="1300" alt="image" src="https://github.com/user-attachments/assets/ee53a167-bd0a-4656-822b-a3548ac28a9d" />
 
 ### 👥 Team Member
-+ @luminouxx
-+ @luminouxx
-+ @luminouxx
-+ @luminouxx
-+ @luminouxx
++ @ADA-Jenki
++ @nuyhhyun
++ @chawj1234
++ @bear3283
++ @RoastedJM
 
 - 그룹장은 매주 돌아가며 변경될 수 있으며, 새로운 주차마다 학습 주제를 지정할 수 있습니다.
 - 팀원들은 PR을 통해 학습 내용을 공유하고, 서로의 노트를 리뷰하며 피드백을 제공할 수 있습니다.
