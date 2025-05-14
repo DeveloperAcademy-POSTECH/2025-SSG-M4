@@ -157,3 +157,5 @@
 ---
 
 **태그:** #Swift #프로그래밍 #변수 #타입안전성 #타입추론 #타입명시 #String #Int #Bool #Playground #Xcode
+
+ㅁㄴㅇㄹㅁㄴㅇㄹㅁㅇㄴㄹ
