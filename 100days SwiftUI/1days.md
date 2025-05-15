@@ -1,4 +1,4 @@
-# Swift 핵심 개념 정리 (Swift in Sixty Seconds 발췌)
+# Swift 핵심 개념 정리
 
 ---
 
