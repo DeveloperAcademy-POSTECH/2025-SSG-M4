@@ -37,5 +37,14 @@ Temporary Items
 ### Obsidian ###
 # config dir
 .obsidian/
+.space/
+**/.space/
+**/*.mdb
+**/*.mdc
+
+### 특정 파일 무시
+**/.space/def.json
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,obsidian
+
+
