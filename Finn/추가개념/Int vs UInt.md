@@ -73,6 +73,18 @@ let invalidUInt = UInt(negativeValue)  // ❌ 런타임 오류!
 
 ---
 
+### 그래서 뭐 쓰면 되는데 ? Int 🆚 UInt 
+
+- UInt는 거의 안 씀: 실제 iOS 프로젝트에선 UInt보다 Int가 압도적으로 많이 사용돼. 이유는 연산 혼합 시 타입 변환이 귀찮고 오류를 만들기 쉬움.
+- Double vs Float: 대부분의 경우 Double을 사용. 
+  정밀도 면에서 우수하고 Swift의 기본 부동소수점 타입도 Double.
+
+```swift
+let a = 0.1       // 추론: Double
+let b: Float = 0.1 // 명시하지 않으면 안 됨
+```
+
+
 ## 📚 관련 개념 링크
 
 - [[부동 소수점]]
