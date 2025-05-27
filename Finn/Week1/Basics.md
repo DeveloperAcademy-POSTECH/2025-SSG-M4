@@ -1,10 +1,10 @@
-Swift는 [[Type-safe]]언어?
+### Swift는 [[Type-safe]]언어
 
 ### 상수와 변수 
 이름과 특정 타입을 연결 
-### 상수와 변수 선언
+### [[상수 선언]]
 사용하기 전에 선언되어야 한다. 
-[[상수 선언]]
+
 
 ```swift title:상수와_변수_선언
 var environment = "development"
@@ -22,7 +22,7 @@ if environment == "development" {
 ```swift
  var welcomeMessage: String
 ```
-- _선언한 변수는_ `welcomeMessage` _라고 하며 이것의 타입은_ `String` _입니다_
+- _선언한 변수 -`welcomeMessage` _ 타입 -_ `String` _
 
 #### **여러개 선언**
 ```swift
@@ -122,3 +122,126 @@ var age : Int = 3
 age += "안녕하세요"
 print(type(of: age))
 ```
+
+
+### 숫자 리터럴
+
+- 10진수 (접두사 없음)
+- `0b` 접두사로 _2진수_
+- `0o` 접두사로 _8진수_
+- `0x` 접두사로 _16진수_
+
+```swift title:정수_리터럴_예시
+let decimalInteger = 17
+let binaryInteger = 0b10001       // 17 in binary notation
+let octalInteger = 0o21           // 17 in octal notation
+let hexadecimalInteger = 0x11     // 17 in hexadecimal notation
+```
+
+
+```swift title:밑줄포함_값에_영향안줌!!!
+let paddedDouble = 000123.456
+let oneMillion = 1_000_000
+let justOverOneMillion = 1_000_000.000_000_1
+```
+
+#### 어떻게 바꿀 수 있나? 10진수를 다른진수로 바꿔보기! 
+
+```swift 
+var v = 999999
+// 2진수
+print(String(v,radix:2))
+
+// 16진수
+var sixteen = String(v,radix:16)
+print(sixteen)
+
+
+```
+
+#### 그러면 다른진수를 10진수로 어떻게 바꿔요 ??! 
+
+```swift title:다른진수->10진수_변환
+let v = 999
+
+let sixteen = String(v,radix:16)
+
+var 원본 = Int(sixteen,radix:16)!
+print(원본)
+```
+
+#### 오잉 그럼 Int에는왜 !가 있어요? 왜 옵셔널인가요 ?! 
+⸻
+
+
+- 불변성`LET의` 의도 전달
+	- let을 사용하는 건 단순히 값이 바뀌지 않는다는 의미를 넘어서 바뀌지않는 상수라는 의도를 코드에 표현하는 것에도 의의가 있음
+- 불변 객체의 장점
+	- 상태가 고정된 변수는 디버깅이 쉬워지고, 멀티스레드 환경에서도 안정적이야.
+
+
+
+```swift title:불변객체_장점
+struct User {
+    let name: String
+    let age: Int
+}
+```
+
+⸻
+
+### 타입 어노테이션 vs 타입 추론 - 실전에서는?
+	
+`{swift icon} let result: Double = sqrt(25)`
+	
+	
+// 명시하지 않으면 반환 타입을 알기 어려울 수 있음
+
+	•	추론이 좋은 경우: 타입이 명확하고 코드가 깔끔해야 할 때. 너무 많은 타입 명시는 오히려 가독성을 해칠 수 있어.
+
+⸻
+
+### Int / UInt / 부동소수점 타입 - 실제 프로젝트에서 뭘 써야 할까?
+
+	•	UInt는 거의 안 씀: 실제 iOS 프로젝트에선 UInt보다 Int가 압도적으로 많이 사용돼. 이유는 연산 혼합 시 타입 변환이 귀찮고 오류를 만들기 쉬움.
+	•	Double vs Float: 대부분의 경우 Double을 사용. 정밀도 면에서 우수하고 Swift의 기본 부동소수점 타입도 Double임.
+
+```swift
+let a = 0.1       // 추론: Double
+let b: Float = 0.1 // 명시하지 않으면 안 됨
+```
+
+
+⸻
+
+타입 세이프티와 타입 추론 - 진짜 실전에서 타입 안정성이 중요한 이유
+	•	Swift는 타입 안정성이 엄격해서, 런타임에서 터질 수 있는 오류를 컴파일 타임에 잡아줌. 특히 JSON 파싱이나 네트워크 통신 시 이점이 커.
+```swift
+import Foundation
+
+struct APIResponse: Decodable {
+    let id: Int
+    let name: String
+}
+
+let json = """
+{
+   "id": "3",
+   "name": "John"
+}
+""".data(using: .utf8)!
+// let json = """
+// {
+//    "id": 3,
+//    "name": "John"
+// }
+// """.data(using: .utf8)!
+
+do {
+    let decoded = try JSONDecoder().decode(APIResponse.self, from: json)
+    print(decoded)
+} catch {
+    print("디코딩 실패: \(error)") // id 가 String이라서 조용히 막아줬음 컴파일단계에서 파악
+}
+
+``
