@@ -1,6 +1,6 @@
 >[!question]
->GQ1. GQ를 쓰세요
->GQ2. GQ를 쓰세요
+>GQ1. 주석이란 무엇일까?
+>GQ2. Swift에서 주석은 어떻게 사용될까?
 
 ## Description
 - 개요와 설명을 작성
