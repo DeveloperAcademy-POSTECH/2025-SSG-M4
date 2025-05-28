@@ -2,9 +2,6 @@
 >GQ1. GQ를 쓰세요
 >GQ2. GQ를 쓰세요
 
->[!Answer]
->GA1. GA를 쓰세요
->GA2. GA를 쓰세요
 ## Description
 - 개요와 설명을 작성
 
