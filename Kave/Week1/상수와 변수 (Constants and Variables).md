@@ -13,7 +13,7 @@
 - var을 사용하여 선언한다.
 
 **타입 지정(Type Annotations)**
-상수와 변수 모두 사용하기 전에 **반드시** 선언이 되어야 한다. 
+상수와 변수 모두 사용되기 전에 **반드시** 선언이 되어야 한다. 
 
 ```swift
 let maximumNumberOfLoginAttemps = 10
