@@ -1,0 +1,82 @@
+## 1. 추가 개념 설명
+
+- **타입 안전성 (Type Safety) 강화**: Swift는 엄격한 타입 검사를 통해 개발자가 의도하지 않은 데이터 타입 간의 자동 변환으로 인해 발생할 수 있는 오류를 사전에 방지합니다. 모든 타입 변환은 명시적으로 이루어져야 합니다. 이는 코드의 안정성과 예측 가능성을 높입니다.
+- **데이터 손실 가능성**: 다른 타입으로 변환 시 데이터 손실이 발생할 수 있음을 인지해야 합니다.
+    - **정수 간 변환**: 큰 데이터 타입을 표현하는 값을 작은 데이터 타입으로 변환할 때, 만약 값이 작은 타입의 표현 범위를 넘어서면 **런타임 오류**가 발생하여 프로그램이 중단될 수 있습니다 (예: `Int16(500)`을 `Int8`로 변환 시도). 이는 Swift가 데이터의 의도치 않은 잘림(truncation)을 방지하기 위함입니다. 안전한 변환을 위해서는 값의 범위를 미리 확인하거나, Swift에서 제공하는 다른 초기화 방법(예: `exactly` 초기화 후 옵셔널 바인딩, 또는 `clamping` 초기화 등 고급 주제)을 사용해야 합니다.
+    - **부동 소수점 → 정수**: 소수점 이하 자리는 **버림**(truncation)됩니다. 예를 들어 `Int(3.9)`는 `3`이 되고, `Int(-3.9)`는 `-3`이 됩니다. 반올림이 적용되지 않습니다.
+- **명시적 변환**: 타입 변환은 `원하는타입(변환할값)` 형태의 초기화 구문을 사용해 명확하게 표현해야 합니다. 이는 코드의 가독성을 높이고, 변환 과정과 그로 인한 잠재적 데이터 변경을 개발자가 명확히 인지하도록 돕습니다.
+
+## 2. 구체적인 예시
+
+**a. 정수와 부동소수점 간 변환 (기존 예시 확장)**
+
+Swift에서 정수와 부동소수점 타입 간의 연산은 동일 타입으로 맞춰주어야 합니다.
+
+```Swift
+let three: Int = 3
+let pointOneFourOneFiveNine: Double = 0.14159
+
+// Int를 Double로 명시적 변환
+let pi: Double = Double(three) + pointOneFourOneFiveNine
+// pi는 3.14159 이며, 타입은 Double로 추론됩니다.
+print("pi: \(pi)") // 출력: pi: 3.14159
+
+// Double을 Int로 명시적 변환 (소수점 이하 버림)
+let integerPi: Int = Int(pi)
+// integerPi는 3 이며, 타입은 Int로 추론됩니다.
+print("integerPi: \(integerPi)") // 출력: integerPi: 3
+
+let negativePi: Double = -3.14159
+let negativeIntegerPi: Int = Int(negativePi)
+print("negativeIntegerPi: \(negativeIntegerPi)") // 출력: negativeIntegerPi: -3
+```
+
+**b. 서로 다른 크기의 정수 간 변환**
+
+기본적으로 `Int`를 사용하지만, 특정 크기의 정수 타입이 필요할 때가 있습니다. 이들 간의 변환도 명시적이어야 합니다.
+
+```Swift
+let twoThousand: UInt16 = 2_000 // UInt16 타입 (0 ~ 65,535)
+let one: UInt8 = 1             // UInt8 타입 (0 ~ 255)
+
+// UInt8을 UInt16으로 변환하여 덧셈
+let twoThousandAndOne: UInt16 = twoThousand + UInt16(one)
+// twoThousandAndOne은 2001 이며, 타입은 UInt16로 추론됩니다.
+print("twoThousandAndOne: \(twoThousandAndOne)") // 출력: twoThousandAndOne: 2001
+
+let largeValue: Int16 = 300
+// let smallValue: Int8 = Int8(largeValue) // 오류 발생! Int8은 -128~127 범위인데 300은 이 범위를 넘음.
+                                         // 이 코드는 컴파일 시에는 문제가 없으나 실행 시점에 값이 Int8 범위를 벗어나면 오류를 발생시킴 (trap)
+                                         // 안전하게 처리하려면 변환 전에 값을 확인해야 함.
+
+// 값이 범위 내에 있는 경우
+let fittingValue: Int16 = 100
+let convertedValue: Int8 = Int8(fittingValue)
+print("convertedValue: \(convertedValue)") // 출력: convertedValue: 100
+```
+
+⚠️ **주의**: 크기가 다른 정수 타입 간 변환 시, 변환 대상 타입이 표현할 수 있는 범위를 넘어서는 값을 변환하려고 하면 런타임 오류가 발생합니다.
+
+**c. 숫자 리터럴과 변수/상수 결합 규칙의 차이**
+
+제공된 텍스트의 "Note" 부분은 중요합니다. 숫자 리터럴(코드에 직접 작성된 숫자)은 타입이 명시되지 않으면 컴파일러가 문맥에 따라 타입을 추론합니다.
+
+```Swift
+// 리터럴 값 3은 타입이 아직 확정되지 않은 숫자 리터럴입니다.
+// 리터럴 값 0.14159도 마찬가지입니다.
+// 컴파일러는 3 + 0.14159 연산을 보고 두 리터럴을 Double로 취급하여 덧셈을 수행합니다.
+let result = 3 + 0.14159
+// result는 3.14159 이며, 타입은 Double로 추론됩니다.
+print("Result of literal addition: \(result), type: \(type(of: result))") // 출력: Result of literal addition: 3.14159, type: Double
+```
+
+이는 `let three = 3`과 같이 `three`가 `Int`로 이미 타입이 확정된 경우와 다릅니다. 타입이 확정된 변수/상수는 반드시 명시적 타입 변환을 거쳐야 다른 타입과 연산할 수 있습니다.
+
+## 3. 연관된 학습 내용
+
+- **타입 안전성 (Type Safety)**: Swift의 핵심 철학으로, 강력한 타입 시스템을 통해 오류를 줄입니다.
+- **초기화 구문 (Initializers)**: `TypeName(value)` 형태는 실제로는 해당 타입의 초기화 구문을 호출하여 새 인스턴스를 생성하는 것입니다.
+- **옵셔널 (Optionals)**: 문자열을 숫자로 변환하는 경우(`Int("123")`는 `Int?` 반환)처럼 변환이 실패할 가능성이 있는 경우 결과는 옵셔널 타입입니다.
+- **오버플로우/언더플로우 (Overflow/Underflow)**: 정수 타입이 표현할 수 있는 범위를 넘어서는 연산을 할 때 발생합니다. Swift는 기본적으로 산술 연산에서 오버플로우 발생 시 런타임 오류를 발생시켜 안전성을 높입니다. 타입 변환 시에도 값의 범위를 고려해야 합니다.
+- **타입 추론 (Type Inference)**: 변수나 상수를 선언할 때 컴파일러가 값으로부터 타입을 자동으로 유추하는 기능입니다.
+- **확장 (Extensions)**: 기존 타입에 새로운 초기화 구문을 추가하여 사용자 정의 변환 방식을 만들 수 있습니다 (제공된 텍스트에서 언급됨).
