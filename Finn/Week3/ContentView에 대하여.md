@@ -100,17 +100,18 @@ struct ContentView: View {
 ```
 
 여기에서 모든 데이터를 삭제해주고 있기때문에 
-- `MainView`를 렌더링하려하면..
-- 바로 삭제가 되어서 `rootView`가 `MainView`가 되고..! 
-- 관측되는 순간에 데이터가 지워져서 `user.isEmpty`에 걸리고..!
-- 바로 `rootView`는 `OnboardingView`가 되어서 이동이 안되는 것처럼 보인것
+- `MainView`를 렌더링하려할때 
+- `onAppear`실행!
+- `rootView`가 `MainView`가 되자마자..!  바로 삭제가 되어서 
+- 데이터가 지워져서 `user.isEmpty`에 걸리고..!
+- 바로 `rootView`가 `OnboardingView`로 변경되니까 이동이 안되는 것처럼 보인것
 	- (그래서 깜빡이고 이동을 안함)
 
 
 ---
 
 ### 그럼 RootView로 돌아가는게 필요한가?
-- `contentView`가 바로 바로 user.isEmpty`를 즉각적으로 판단하는 친구라면..! 이미 `ContentView`는 렌더링중이었나..? 
+- `contentView`가 바로 바로 `user.isEmpty`를 즉각적으로 판단하는 친구라면..! 이미 `ContentView`는 렌더링중이었나..? 
 - 렌더링중이라면 `user.isEmpty`를 인지하면 Rootview가 바뀌기도하고, 보여주고있는 View자체를 rootView로 바꿔주는거아닌가? 굳이 한 번더 루트로가 ! 라고 말할 필요도 없는거 아닌가?
 
 ### 정답 ! 
