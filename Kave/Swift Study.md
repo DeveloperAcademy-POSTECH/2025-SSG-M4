@@ -1,3 +1,6 @@
 [[Kave/Week1/Swift|Swift]]
 [[상수와 변수 (Constants and Variables)]]
 [[주석 (Comments)]]
+[[부울]]
+[[숫자 타입 변환]]
+[[타입 별칭]]
