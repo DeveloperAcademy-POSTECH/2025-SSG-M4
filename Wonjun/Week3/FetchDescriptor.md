@@ -64,4 +64,4 @@ let urgentTasks = try modelContext.fetch(urgentTaskDescriptor)
 
 
 ==SwiftUi에서도 FetchDescriptor를 사용할 수 있나요??==
-**네! Query를 사용하면 할 수 있습니다 추후 다시 딥다이브해서 돌아오도록 하지요**
+**네! [[@Query]]를 사용하면 할 수 있습니다 추후 다시 딥다이브해서 돌아오도록 하지요**
