@@ -1,0 +1,4 @@
+----
+- 참 또는 거짓 / true or false
+- 논리적(logical)으로 참조됨
+	- `if i == 1`

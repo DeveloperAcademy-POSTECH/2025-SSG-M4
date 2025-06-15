@@ -9,4 +9,7 @@
 [[주석 (Comments)]]
 [[타입 세이프티와 타입 추론 (Type Safety and Type Inference)]]
 [[파라미터 기본값 (Default Parameter Values)]]
-[[Hyun/Week1/ReadMe|ReadMe]]
+[[부울 (Booleans)]]
+[[숫자 타입 변환 (Numeric Type Conversion)]]
+[[타입 별칭 (Type Aliases)]]
+[[확장 (Extensions)]]
