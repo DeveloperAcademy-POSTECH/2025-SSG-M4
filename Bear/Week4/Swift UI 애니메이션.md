@@ -181,6 +181,7 @@ struct NestedAnimationExample: View {
 3. **색/배경 변화:** `opacity`, `foregroundColor`, `background` 등
 
 
-
+## HIG
+**“Beautiful, subtle animation throughout iOS builds a visual sense of connection between people and content onscreen. When used appropriately, animation can convey status, provide feedback, enhance the sense of direct manipulation, and help users visualize the results of their actions.”**
 
 
