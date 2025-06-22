@@ -122,3 +122,27 @@ switch result {
 
 복잡한 과정은, 미리 생성되어있는 API가 처리해주고, 결과값만 받아올 수 있는 것이다.
 
+``SHManagedSession``, 즉 Shazam의 Session을 관리해준다는 의미인데
+
+이 Session에 대해서 ShazamKit이 어떻게 매칭을 진행할지에 대한 데이터를 준비할 수 있다.
+
+![[ShazamKitPreparing.png]]
+
+preparing 과정이 없이, 매칭이 이루어진다면 
+
+우선 결과가 요청되고 -> 이에 대하여 Session이 매칭을 위해 리소스를 할당하고 -> 녹음을 진행한 뒤 -> 매치값이 리턴되게 된다.
+
+preparing과정이 진행되고 매칭이 이루어진다면
+
+prepare()과정이 진행되고 -> 리소스가 미리 할당되며 -> 사전 녹음이 시작되고 -> 결과 요청이 되었을 때 바로 매치값이 리턴될 수 있게 된다.
+
+```swift
+let managedSession = SHManagedSession()
+
+await managedSession.prepare()
+
+let result = await managedSession.result()
+```
+
+개발자가 직접 호출할 지 안할지를 선택할 수도 있고, ShazamKit을 통해서 이를 호출할 수도 있다.
+
