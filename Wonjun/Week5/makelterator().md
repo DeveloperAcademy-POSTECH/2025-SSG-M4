@@ -1,10 +1,10 @@
 Sequence의 필수 메서드이다 왜냐??
-1. 반복을 가능하게 해주는 `Iterator 객체` 반환하고
+1. 반복을 가능하게 해주는 `Iterator 객체`를 반환하고
 2. makelterator()를 통해서 for-in 반복문, map,filter 같은 고차 함수가 동작 가능하기 때문이다.
 
 `Iterator 객체`
-- `IteratorProtocal`을 준수하고
-- 내부적으로 "현재 어디까지 순회했나" 상태를 기억하고, `next() 메서드`로 값을 반환하다가 더 이상 값이 없으면 nil 반환
+- `IteratorProtocal`을 준수한다.
+- 내부적으로 "현재 어디까지 순회했나" 상태를 기억하고, `next() 메서드`로 값을 반환하다가 더 이상 값이 없으면 nil 반환한다.
 
 `IteratorProtocal`
 - Swift 표준 라이브러리 프로토콜이며 값을 하나씩 순차적으로 반환하는 메커니즘을 정의한다.
