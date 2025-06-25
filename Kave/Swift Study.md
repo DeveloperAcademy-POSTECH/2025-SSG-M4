@@ -6,3 +6,4 @@
 [[타입 별칭]]
 [[빠른 메뉴 (Context Menu)]]
 [[UIKit]]
+[[ShazamKit]]
