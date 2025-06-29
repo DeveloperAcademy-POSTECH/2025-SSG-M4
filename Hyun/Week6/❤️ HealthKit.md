@@ -1,5 +1,5 @@
 https://developer.apple.com/documentation/healthkit
-> 사용자의 건강 및 운동 관련 데이터를 앱이 **안전하게 접근·추가·읽기**할 수 있도록 해주는 **Apple 프레임워크**
+> 사용자의 건강 및 운동 관련 데이터를 앱이 **안전하게 접근·추가·읽기**할 수 있도록 해주는 **Apple [[프레임워크]]**
 - iOS 기기 내의 **[[Health 앱 Browse 탭 기능]]**과 연동
 - iPhone, Apple Watch, 기타 센서에서 수집됨
 
