@@ -1,7 +1,3 @@
->[!question]
->GQ1. GQ를 쓰세요
->GQ2. GQ를 쓰세요
-
 ## Context Menu
 ![[components-context-menu.png]]
 
