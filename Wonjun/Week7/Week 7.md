@@ -5,4 +5,4 @@
 2. [[Tool Calling]]
 3. [[Prompting & Session]]
 4. [[피드백 및 안정성]]
-5. [[Adapter 훈련 및 확장]]
+5. [[Adapter 훈련 및 확장]](추후 딥다이브 예정)
